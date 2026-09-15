@@ -1,0 +1,192 @@
+---
+const categories = [
+  { label: "All", id: "menu" },
+  { label: "Starters", id: "starters" },
+  { label: "Soups & Salads", id: "soups-salads" },
+  { label: "Tandoor", id: "tandoor" },
+  { label: "Main Course", id: "main-course" },
+  { label: "Rice & Breads", id: "rice-breads" },
+  { label: "Desserts", id: "desserts" },
+  { label: "Beverages", id: "beverages" },
+];
+---
+
+<section
+  id="menu-category-nav"
+  class="sticky top-0 z-40 border-y border-[#deddd4] bg-[#f8f7f2]/95 backdrop-blur-xl"
+>
+  <div class="mx-auto max-w-[1720px]">
+    <nav
+      class="menu-category-scroll flex h-[72px] items-center overflow-x-auto px-6 sm:px-8 lg:px-12 xl:px-16"
+      aria-label="Menu categories"
+    >
+      <div class="flex min-w-max items-center gap-1 sm:gap-2">
+        {
+          categories.map((category, index) => (
+            <a
+              href={`#${category.id}`}
+              data-category={category.id}
+              class:list={[
+                "menu-category-link relative flex h-[42px] shrink-0 items-center rounded-full px-4 text-[13px] font-medium transition-all duration-300",
+                index === 0
+                  ? "bg-[#1b2116] text-white"
+                  : "text-[#5d6057] hover:bg-[#ecebe3] hover:text-[#171a14]",
+              ]}
+            >
+              {category.label}
+
+              {index === 0 && (
+                <span
+                  class="menu-category-indicator absolute -bottom-[15px] left-1/2 h-[2px] w-5 -translate-x-1/2 rounded-full bg-[#b8b878]"
+                  aria-hidden="true"
+                ></span>
+              )}
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+  </div>
+</section>
+
+<style>
+  .menu-category-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .menu-category-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  const categoryLinks =
+    document.querySelectorAll<HTMLAnchorElement>(
+      "[data-category]"
+    );
+
+  const sections = Array.from(categoryLinks)
+    .map((link) => {
+      const id = link.dataset.category;
+
+      if (!id || id === "menu") {
+        return null;
+      }
+
+      return document.getElementById(id);
+    })
+    .filter(
+      (section): section is HTMLElement =>
+        section !== null
+    );
+
+  /*
+   * Update the visual active state.
+   *
+   * IMPORTANT:
+   * Do not call scrollIntoView() here.
+   * This function should ONLY change the nav UI.
+   */
+  const setActiveCategory = (id: string) => {
+    categoryLinks.forEach((link) => {
+      const isActive =
+        link.dataset.category === id;
+
+      link.classList.toggle(
+        "bg-[#1b2116]",
+        isActive
+      );
+
+      link.classList.toggle(
+        "text-white",
+        isActive
+      );
+
+      link.classList.toggle(
+        "text-[#5d6057]",
+        !isActive
+      );
+
+      link.classList.toggle(
+        "hover:bg-[#ecebe3]",
+        !isActive
+      );
+
+      link.classList.toggle(
+        "hover:text-[#171a14]",
+        !isActive
+      );
+
+      const existingIndicator =
+        link.querySelector(
+          ".menu-category-indicator"
+        );
+
+      if (isActive) {
+        if (!existingIndicator) {
+          const indicator =
+            document.createElement("span");
+
+          indicator.className =
+            "menu-category-indicator absolute -bottom-[15px] left-1/2 h-[2px] w-5 -translate-x-1/2 rounded-full bg-[#b8b878]";
+
+          indicator.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          link.appendChild(indicator);
+        }
+      } else {
+        existingIndicator?.remove();
+      }
+    });
+  };
+
+  /*
+   * Observe menu sections while scrolling.
+   */
+  if (sections.length) {
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+          const visibleSections = entries
+            .filter(
+              (entry) =>
+                entry.isIntersecting
+            )
+            .sort(
+              (a, b) =>
+                a.boundingClientRect.top -
+                b.boundingClientRect.top
+            );
+
+          const current =
+            visibleSections[0];
+
+          if (
+            current?.target instanceof
+            HTMLElement
+          ) {
+            setActiveCategory(
+              current.target.id
+            );
+          }
+        },
+        {
+          rootMargin:
+            "-20% 0px -65% 0px",
+          threshold: 0,
+        }
+      );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  }
+</script>

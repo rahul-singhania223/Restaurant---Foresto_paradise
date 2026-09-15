@@ -1,0 +1,650 @@
+---
+interface Props {
+  id?: string;
+}
+
+const { id = "reservation-modal" } = Astro.props;
+---
+
+<div
+  id={id}
+  class="reservation-modal pointer-events-none fixed inset-0 z-[9999] flex items-end justify-center p-0 opacity-0 sm:items-center sm:p-4 md:p-6"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${id}-title`}
+>
+  <!-- Backdrop -->
+  <div
+    class="reservation-modal-backdrop absolute inset-0 bg-[#090c08]/75 opacity-0 backdrop-blur-[3px]"
+    data-reservation-close
+    aria-hidden="true"
+  ></div>
+
+  <!-- Modal -->
+  <div
+    class="reservation-modal-panel relative z-10 flex max-h-[96dvh] w-full flex-col overflow-hidden rounded-t-[28px] bg-[#f8f7f2] shadow-[0_30px_100px_rgba(0,0,0,0.3)] sm:max-h-[92dvh] sm:max-w-[620px] sm:rounded-[28px]"
+  >
+    <!-- Mobile top handle -->
+    <div
+      class="absolute left-1/2 top-2 z-30 h-1 w-10 -translate-x-1/2 rounded-full bg-[#d5d5cb] sm:hidden"
+      aria-hidden="true"
+    ></div>
+
+    <!-- Close -->
+    <button
+      type="button"
+      data-reservation-close
+      class="group absolute right-4 top-4 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[#deded5] bg-[#f8f7f2]/85 text-[#45483d] shadow-sm backdrop-blur-md transition-all duration-300 hover:-rotate-1 hover:bg-[#e9e8df] hover:text-[#171a14] active:scale-95 sm:right-5 sm:top-5"
+      aria-label="Close reservation form"
+    >
+      <svg
+        viewBox="0 0 20 20"
+        class="h-4 w-4 transition-transform duration-300 group-hover:rotate-90"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path d="M5 5l10 10" />
+        <path d="M15 5L5 15" />
+      </svg>
+    </button>
+
+    <!-- Scroll container -->
+    <div class="reservation-modal-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain">
+      <!-- Form Content -->
+      <div
+        id={`${id}-form-view`}
+        class="reservation-view p-6 pt-12 sm:p-9 md:p-10"
+      >
+        <!-- Header -->
+        <div class="mb-7 max-w-[480px] sm:mb-8">
+          <div class="mb-4 flex items-center gap-3 sm:mb-5">
+            <span class="h-px w-7 bg-[#b8b878] sm:w-8"></span>
+
+            <span
+              class="text-[9px] font-medium uppercase tracking-[0.24em] text-[#74765e] sm:text-[10px]"
+            >
+              Table Reservation
+            </span>
+          </div>
+
+          <h2
+            id={`${id}-title`}
+            class="font-serif text-[clamp(2.35rem,11vw,4rem)] font-normal leading-[0.91] tracking-[-0.045em] text-[#171a14]"
+          >
+            Reserve your
+            <span class="block text-[#8c8e60]">
+              table.
+            </span>
+          </h2>
+
+          <p
+            class="mt-4 max-w-[440px] text-[13px] leading-6 text-[#707169] sm:mt-5 sm:text-[14px]"
+          >
+            Tell us a little about your visit and our team will get in touch
+            with you shortly to confirm your reservation.
+          </p>
+        </div>
+
+        <!-- Form -->
+        <form id={`${id}-form`} class="space-y-4 sm:space-y-5">
+          <!-- Name -->
+          <div class="reservation-field">
+            <label
+              for={`${id}-name`}
+              class="mb-2 block text-[9px] font-medium uppercase tracking-[0.16em] text-[#74765e] sm:text-[10px]"
+            >
+              Name
+            </label>
+
+            <input
+              id={`${id}-name`}
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Your name"
+              class="h-12 w-full rounded-xl border border-[#deded5] bg-white/60 px-4 text-sm text-[#20231c] outline-none transition-all duration-300 placeholder:text-[#a2a39c] hover:border-[#c9c9be] focus:border-[#a8a86f] focus:bg-white focus:shadow-[0_6px_20px_rgba(35,40,25,0.04)] focus:ring-4 focus:ring-[#b8b878]/10"
+            />
+          </div>
+
+          <!-- Phone -->
+          <div class="reservation-field">
+            <label
+              for={`${id}-phone`}
+              class="mb-2 block text-[9px] font-medium uppercase tracking-[0.16em] text-[#74765e] sm:text-[10px]"
+            >
+              Phone Number
+            </label>
+
+            <input
+              id={`${id}-phone`}
+              name="phone"
+              type="tel"
+              required
+              autocomplete="tel"
+              inputmode="tel"
+              placeholder="+91 XXXXX XXXXX"
+              class="h-12 w-full rounded-xl border border-[#deded5] bg-white/60 px-4 text-sm text-[#20231c] outline-none transition-all duration-300 placeholder:text-[#a2a39c] hover:border-[#c9c9be] focus:border-[#a8a86f] focus:bg-white focus:shadow-[0_6px_20px_rgba(35,40,25,0.04)] focus:ring-4 focus:ring-[#b8b878]/10"
+            />
+          </div>
+
+          <!-- Date / Time -->
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
+            <div class="reservation-field">
+              <label
+                for={`${id}-date`}
+                class="mb-2 block text-[9px] font-medium uppercase tracking-[0.16em] text-[#74765e] sm:text-[10px]"
+              >
+                Date
+              </label>
+
+              <input
+                id={`${id}-date`}
+                name="date"
+                type="date"
+                required
+                class="h-12 w-full rounded-xl border border-[#deded5] bg-white/60 px-4 text-sm text-[#20231c] outline-none transition-all duration-300 hover:border-[#c9c9be] focus:border-[#a8a86f] focus:bg-white focus:shadow-[0_6px_20px_rgba(35,40,25,0.04)] focus:ring-4 focus:ring-[#b8b878]/10"
+              />
+            </div>
+
+            <div class="reservation-field">
+              <label
+                for={`${id}-time`}
+                class="mb-2 block text-[9px] font-medium uppercase tracking-[0.16em] text-[#74765e] sm:text-[10px]"
+              >
+                Preferred Time
+              </label>
+
+              <input
+                id={`${id}-time`}
+                name="time"
+                type="time"
+                required
+                class="h-12 w-full rounded-xl border border-[#deded5] bg-white/60 px-4 text-sm text-[#20231c] outline-none transition-all duration-300 hover:border-[#c9c9be] focus:border-[#a8a86f] focus:bg-white focus:shadow-[0_6px_20px_rgba(35,40,25,0.04)] focus:ring-4 focus:ring-[#b8b878]/10"
+              />
+            </div>
+          </div>
+
+          <!-- Guests -->
+          <div class="reservation-field">
+            <label
+              for={`${id}-guests`}
+              class="mb-2 block text-[9px] font-medium uppercase tracking-[0.16em] text-[#74765e] sm:text-[10px]"
+            >
+              Number of Guests
+            </label>
+
+            <div class="relative">
+              <select
+                id={`${id}-guests`}
+                name="guests"
+                required
+                class="h-12 w-full appearance-none rounded-xl border border-[#deded5] bg-white/60 px-4 pr-11 text-sm text-[#20231c] outline-none transition-all duration-300 hover:border-[#c9c9be] focus:border-[#a8a86f] focus:bg-white focus:shadow-[0_6px_20px_rgba(35,40,25,0.04)] focus:ring-4 focus:ring-[#b8b878]/10"
+              >
+                <option value="">Select guests</option>
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="7">7 Guests</option>
+                <option value="8">8 Guests</option>
+                <option value="9">9 Guests</option>
+                <option value="10">10 Guests</option>
+                <option value="10+">More than 10</option>
+              </select>
+
+              <svg
+                viewBox="0 0 20 20"
+                class="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#74765e]"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="m5 7.5 5 5 5-5" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="reservation-field">
+            <label
+              for={`${id}-message`}
+              class="mb-2 block text-[9px] font-medium uppercase tracking-[0.16em] text-[#74765e] sm:text-[10px]"
+            >
+              Special Request
+              <span
+                class="normal-case tracking-normal text-[#a2a39c]"
+              >
+                (Optional)
+              </span>
+            </label>
+
+            <textarea
+              id={`${id}-message`}
+              name="message"
+              rows="3"
+              placeholder="Any special requests?"
+              class="min-h-[88px] w-full resize-none rounded-xl border border-[#deded5] bg-white/60 px-4 py-3 text-sm leading-6 text-[#20231c] outline-none transition-all duration-300 placeholder:text-[#a2a39c] hover:border-[#c9c9be] focus:border-[#a8a86f] focus:bg-white focus:shadow-[0_6px_20px_rgba(35,40,25,0.04)] focus:ring-4 focus:ring-[#b8b878]/10"
+            ></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button
+            type="submit"
+            class="group mt-1 inline-flex h-[52px] w-full items-center justify-center gap-4 rounded-full bg-[#1b2116] px-6 text-[13px] font-medium text-white shadow-[0_8px_25px_rgba(27,33,22,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2b3324] hover:shadow-[0_15px_35px_rgba(27,33,22,0.18)] active:translate-y-0 active:scale-[0.99] sm:mt-2"
+          >
+            <span>Request a Table</span>
+
+            <svg
+              viewBox="0 0 20 20"
+              class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.4"
+            >
+              <path d="M3 10h13" />
+              <path d="m11 5 5 5-5 5" />
+            </svg>
+          </button>
+
+          <p
+            class="pb-1 text-center text-[10px] leading-5 text-[#9a9b93]"
+          >
+            Your reservation is subject to confirmation by our team.
+          </p>
+        </form>
+      </div>
+
+      <!-- Success View -->
+      <div
+        id={`${id}-success-view`}
+        class="reservation-success hidden min-h-[420px] flex-col items-center justify-center px-6 py-14 text-center sm:min-h-[500px] sm:px-10"
+      >
+        <!-- Check -->
+        <div
+          class="reservation-success-icon mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#e9e8d9] sm:mb-7"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="h-7 w-7 text-[#74764f]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="m5 12 4.5 4.5L19 7" />
+          </svg>
+        </div>
+
+        <div class="mb-4 flex items-center justify-center gap-3">
+          <span class="h-px w-7 bg-[#b8b878]"></span>
+
+          <span
+            class="text-[9px] font-medium uppercase tracking-[0.24em] text-[#74765e] sm:text-[10px]"
+          >
+            Reservation Request
+          </span>
+
+          <span class="h-px w-7 bg-[#b8b878]"></span>
+        </div>
+
+        <h2
+          class="max-w-[480px] font-serif text-[clamp(2.35rem,11vw,4rem)] font-normal leading-[0.91] tracking-[-0.045em] text-[#171a14]"
+        >
+          We've got your
+          <span class="block text-[#8c8e60]">
+            request.
+          </span>
+        </h2>
+
+        <p
+          class="mt-5 max-w-[430px] text-[13px] leading-7 text-[#707169] sm:mt-6 sm:text-[14px]"
+        >
+          We have got your request. Our team will contact you soon to confirm
+          the details of your reservation.
+        </p>
+
+        <button
+          type="button"
+          data-reservation-close
+          class="group mt-8 inline-flex h-11 items-center gap-3 rounded-full bg-[#1b2116] px-6 text-[12px] font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2b3324] hover:shadow-[0_12px_25px_rgba(27,33,22,0.15)] active:translate-y-0"
+        >
+          <span>Back to Website</span>
+
+          <svg
+            viewBox="0 0 20 20"
+            class="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-x-0.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+          >
+            <path d="M17 10H4" />
+            <path d="m9 15-5-5 5-5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .reservation-modal {
+    visibility: hidden;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
+  }
+
+  .reservation-modal-backdrop {
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      backdrop-filter 0.45s ease;
+  }
+
+  .reservation-modal-panel {
+    transform: translateY(40px) scale(0.985);
+    opacity: 0;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.4s ease;
+  }
+
+  .reservation-modal.is-open {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .reservation-modal.is-open .reservation-modal-backdrop {
+    opacity: 1;
+  }
+
+  .reservation-modal.is-open .reservation-modal-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  .reservation-modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d1c7 transparent;
+  }
+
+  .reservation-modal-scroll::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .reservation-modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .reservation-modal-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: #d1d1c7;
+  }
+
+  .reservation-field {
+    animation: reservation-field-in 0.5s both;
+  }
+
+  .reservation-modal.is-open .reservation-field:nth-child(1) {
+    animation-delay: 0.04s;
+  }
+
+  .reservation-modal.is-open .reservation-field:nth-child(2) {
+    animation-delay: 0.07s;
+  }
+
+  .reservation-modal.is-open .reservation-field:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+
+  .reservation-modal.is-open .reservation-field:nth-child(4) {
+    animation-delay: 0.13s;
+  }
+
+  .reservation-modal.is-open .reservation-field:nth-child(5) {
+    animation-delay: 0.16s;
+  }
+
+  @keyframes reservation-field-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reservation-success-icon {
+    animation: reservation-success-icon 0.55s
+      cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes reservation-success-icon {
+    0% {
+      opacity: 0;
+      transform: scale(0.65);
+    }
+
+    70% {
+      transform: scale(1.06);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (min-width: 640px) {
+    .reservation-modal-panel {
+      transform: translateY(24px) scale(0.97);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .reservation-modal-panel {
+      width: 100%;
+      max-height: calc(100dvh - 4px);
+    }
+
+    .reservation-modal-scroll {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reservation-modal,
+    .reservation-modal-backdrop,
+    .reservation-modal-panel,
+    .reservation-field,
+    .reservation-success-icon {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  const setupReservationModal = () => {
+    const modal = document.querySelector<HTMLElement>(
+      "#reservation-modal",
+    );
+
+    if (!modal) return;
+
+    const form = modal.querySelector<HTMLFormElement>(
+      "#reservation-modal-form",
+    );
+
+    const formView = modal.querySelector<HTMLElement>(
+      "#reservation-modal-form-view",
+    );
+
+    const successView = modal.querySelector<HTMLElement>(
+      "#reservation-modal-success-view",
+    );
+
+    let lastTrigger: HTMLElement | null = null;
+
+    const getFocusableElements = () => {
+      return Array.from(
+        modal.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href], [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+    };
+
+    const openModal = (trigger?: HTMLElement) => {
+      lastTrigger = trigger ?? null;
+
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+
+      /*
+       * Prevent background scrolling without causing the page
+       * to jump because of scrollbar removal.
+       */
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+
+      document.documentElement.classList.add("overflow-hidden");
+
+      requestAnimationFrame(() => {
+        const firstInput = modal.querySelector<
+          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >(
+          "input:not([type='hidden']), select, textarea",
+        );
+
+        firstInput?.focus();
+      });
+    };
+
+    const resetModal = () => {
+      form?.reset();
+
+      formView?.classList.remove("hidden");
+      successView?.classList.add("hidden");
+      successView?.classList.remove("flex");
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+
+      document.documentElement.classList.remove("overflow-hidden");
+      document.body.style.paddingRight = "";
+
+      /*
+       * Wait for the closing animation before resetting state.
+       */
+      window.setTimeout(() => {
+        resetModal();
+      }, 400);
+
+      lastTrigger?.focus();
+      lastTrigger = null;
+    };
+
+    /*
+     * Global event delegation.
+     *
+     * Any element anywhere on the website with
+     * [data-reservation-trigger] opens this modal.
+     */
+    document.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+
+      const trigger = target.closest<HTMLElement>(
+        "[data-reservation-trigger]",
+      );
+
+      if (trigger) {
+        event.preventDefault();
+        openModal(trigger);
+        return;
+      }
+
+      const closeTrigger = target.closest<HTMLElement>(
+        "[data-reservation-close]",
+      );
+
+      if (closeTrigger) {
+        closeModal();
+      }
+    });
+
+    /*
+     * Submit reservation.
+     *
+     * Replace this section later with your API request.
+     */
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      formView?.classList.add("hidden");
+
+      successView?.classList.remove("hidden");
+      successView?.classList.add("flex");
+
+      requestAnimationFrame(() => {
+        const successButton = successView?.querySelector<HTMLButtonElement>(
+          "[data-reservation-close]",
+        );
+
+        successButton?.focus();
+      });
+    });
+
+    /*
+     * Escape key + focus trap.
+     */
+    document.addEventListener("keydown", (event) => {
+      if (!modal.classList.contains("is-open")) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = getFocusableElements();
+
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  };
+
+  /*
+   * Astro View Transitions support.
+   */
+  document.addEventListener("astro:page-load", setupReservationModal);
+
+  /*
+   * Initial page load.
+   */
+  setupReservationModal();
+</script>

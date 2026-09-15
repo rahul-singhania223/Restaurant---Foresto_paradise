@@ -1,0 +1,765 @@
+---
+const outlets = [
+  {
+    id: "patliputra",
+    name: "Patliputra",
+    city: "Patna",
+    image: "https://images.unsplash.com/photo-1481833761820-0509d3217039?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cmVzdGF1cmFudCUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D",
+    address: "Patliputra Road, Near AIIMS, Patna, Bihar 800013",
+    hours: "11:00 AM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "2.4 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Patliputra%20Road%2C%20Patna%2C%20Bihar",
+  },
+  {
+    id: "patna-one-mall",
+    name: "Patna One Mall",
+    city: "Patna",
+    image: "https://images.unsplash.com/photo-1712630514718-3830cc6c0d0a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJlc3RhdXJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+    address: "Patna One Mall, Patna, Bihar",
+    hours: "11:00 AM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "5.8 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Patna%20One%20Mall%2C%20Patna",
+  },
+  {
+    id: "foresto-bistro",
+    name: "Foresto Bistro",
+    city: "Patna",
+    image: "https://images.unsplash.com/photo-1521917441209-e886f0404a7b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJlc3RhdXJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+    address: "Foresto Bistro, Patna, Bihar",
+    hours: "12:00 PM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "7.1 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Foresto%20Bistro%2C%20Patna",
+  },
+  {
+    id: "lucknow",
+    name: "Lucknow",
+    city: "Lucknow",
+    image: "https://images.unsplash.com/photo-1608816042754-d69cb2271bea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHJlc3RhdXJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+    address: "Foresto Paradise, Lucknow, Uttar Pradesh",
+    hours: "11:00 AM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "482 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Foresto%20Paradise%2C%20Lucknow",
+  },
+];
+---
+
+<section
+  id="outlets"
+  class="relative overflow-hidden bg-[#f3f3e8] px-5 py-24 sm:px-8 lg:px-12 lg:py-32"
+>
+  <!-- ============================================================
+       BACKGROUND
+       ============================================================ -->
+
+  <div
+    class="pointer-events-none absolute inset-0 opacity-50"
+    aria-hidden="true"
+  >
+    <div
+      class="absolute left-[-10%] top-[10%] h-[450px] w-[450px] rounded-full bg-[#dfe2c9] blur-[120px]"
+    ></div>
+
+    <div
+      class="absolute bottom-[-15%] right-[-10%] h-[500px] w-[500px] rounded-full bg-[#e3e3cf] blur-[130px]"
+    ></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1380px]">
+    <!-- ============================================================
+         SECTION HEADER
+         ============================================================ -->
+
+    <div
+      class="mx-auto max-w-3xl text-center"
+      data-reveal
+    >
+      <!-- Eyebrow -->
+      <div
+        class="flex items-center justify-center gap-3 text-[12px] font-medium uppercase tracking-[0.2em] text-[#66713f] sm:text-[13px]"
+      >
+        <!-- Leaf -->
+        <svg
+          viewBox="0 0 24 24"
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          aria-hidden="true"
+        >
+          <path d="M12 21V8" />
+          <path
+            d="M12 13C8.2 13 5.5 10.4 5.5 6.5 9.4 6.5 12 9.1 12 13Z"
+          />
+          <path
+            d="M12 16c3.8 0 6.5-2.6 6.5-6.5-3.9 0-6.5 2.6-6.5 6.5Z"
+          />
+          <path
+            d="M12 9c0-3 1.7-5.5 4.5-6.5 0 3.3-1.7 5.7-4.5 6.5Z"
+          />
+        </svg>
+
+        <span>Our Outlets</span>
+      </div>
+
+      <!-- Heading -->
+      <h2
+        class="mt-5 font-serif text-[48px] leading-[0.98] tracking-[-0.04em] text-[#11130e] sm:text-[64px] lg:text-[72px]"
+      >
+        Find your
+        <span class="text-[#7b8550]">Foresto.</span>
+      </h2>
+
+      <!-- Divider -->
+      <div class="mt-7 flex items-center justify-center gap-4 text-[#7a8550]">
+        <span class="h-px w-12 bg-[#7a8550]/50"></span>
+
+        <svg
+          viewBox="0 0 24 24"
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.3"
+          aria-hidden="true"
+        >
+          <path d="M12 21V8" />
+          <path d="M12 13C8.5 13 6 10.5 6 7c3.5 0 6 2.5 6 6Z" />
+          <path d="M12 16c3.5 0 6-2.5 6-6-3.5 0-6 2.5-6 6Z" />
+        </svg>
+
+        <span class="h-px w-12 bg-[#7a8550]/50"></span>
+      </div>
+
+      <!-- Description -->
+      <p
+        class="mx-auto mt-6 max-w-2xl text-[18px] leading-8 text-[#5d5f58] sm:text-[20px]"
+      >
+        Visit us at one of our locations and enjoy<br class="hidden sm:block" />
+        great food, warm ambience and memorable moments.
+      </p>
+    </div>
+
+    <!-- ============================================================
+         OUTLET EXPERIENCE
+         ============================================================ -->
+
+    <div
+      class="mt-14 grid gap-5 lg:grid-cols-[380px_minmax(0,1fr)] xl:mt-16 xl:grid-cols-[390px_minmax(0,1fr)]"
+      data-reveal
+    >
+      <!-- ========================================================
+           OUTLET LIST
+           ======================================================== -->
+
+      <div
+        class="overflow-hidden rounded-[26px] border border-[#d9dacd] bg-[#fafaf5]/80 shadow-[0_20px_60px_rgba(48,52,32,0.08)] backdrop-blur-xl"
+      >
+        <div class="divide-y divide-[#dedfd4]">
+          {outlets.map((outlet, index) => (
+            <button
+              type="button"
+              class:list={[
+                "outlet-selector group relative flex w-full items-center gap-5 px-7 py-6 text-left transition-all duration-500",
+                index === 0
+                  ? "bg-[#e9eadb]"
+                  : "bg-transparent hover:bg-[#eeefe5]",
+              ]}
+              data-outlet={outlet.id}
+              aria-pressed={index === 0 ? "true" : "false"}
+            >
+              <!-- Active indicator -->
+              <span
+                class:list={[
+                  "absolute left-0 top-0 h-full w-[3px] origin-center bg-[#727d48] transition-transform duration-500",
+                  index === 0 ? "scale-y-100" : "scale-y-0",
+                ]}
+                data-active-indicator
+              ></span>
+
+              <!-- Thumbnail -->
+              <div
+                class="relative h-[96px] w-[96px] shrink-0 overflow-hidden rounded-[22px] bg-[#ddd]"
+              >
+                <img
+                  src={outlet.image}
+                  alt={outlet.name}
+                  class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/5"
+                ></div>
+              </div>
+
+              <!-- Details -->
+              <div class="min-w-0 flex-1">
+                <h3
+                  class="font-serif text-[24px] leading-tight tracking-[-0.02em] text-[#171912]"
+                >
+                  {outlet.name}
+                </h3>
+
+                <div
+                  class="mt-2 flex items-center gap-2 text-[15px] text-[#55594f]"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-[17px] w-[17px] shrink-0 text-[#727d48]"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                  </svg>
+
+                  <span>{outlet.city}</span>
+                </div>
+              </div>
+
+              <!-- Arrow -->
+              <svg
+                viewBox="0 0 24 24"
+                class="h-6 w-6 shrink-0 text-[#687346] transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M5 12h13" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </button>
+          ))}
+        </div>
+
+        <!-- View all -->
+        <button
+          type="button"
+          class="group flex w-full items-center justify-center gap-3 border-t border-[#dedfd4] px-6 py-7 text-[15px] font-medium text-[#697346] transition hover:bg-[#eeefe5]"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="m9 18-6-6 6-6" />
+            <path d="m15 6 6 6-6 6" />
+            <path d="M3 12h18" />
+          </svg>
+
+          <span>View All Outlets</span>
+
+          <svg
+            viewBox="0 0 24 24"
+            class="h-4 w-4 transition-transform group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M5 12h13" />
+            <path d="m13 6 6 6-6 6" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- ========================================================
+           SELECTED OUTLET CARD
+           ======================================================== -->
+
+      <div
+        class="overflow-hidden rounded-[26px] border border-[#dedfd5] bg-[#fafaf6] shadow-[0_25px_70px_rgba(48,52,32,0.10)]"
+      >
+        <!-- ======================================================
+             IMAGE
+             ====================================================== -->
+
+        <div
+          class="relative h-[300px] overflow-hidden sm:h-[380px] lg:h-[390px] xl:h-[410px]"
+        >
+          <img
+            id="outlet-image"
+            src={outlets[0].image}
+            alt={outlets[0].name}
+            class="absolute inset-0 h-full w-full object-cover transition-all duration-700"
+          />
+
+          <!-- Image overlay -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-black/10"
+          ></div>
+
+          <!-- Subtle vignette -->
+          <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.18)_100%)]"
+          ></div>
+        </div>
+
+        <!-- ======================================================
+             INFORMATION
+             ====================================================== -->
+
+        <div class="px-7 py-7 sm:px-9 sm:py-8 lg:px-9">
+          <!-- Label -->
+          <p
+            class="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#77804e]"
+          >
+            Currently Viewing
+          </p>
+
+          <div
+            class="mt-2 flex flex-col gap-7 xl:flex-row xl:items-center xl:justify-between"
+          >
+            <!-- Name + Address -->
+            <div class="min-w-0">
+              <h3
+                id="outlet-name"
+                class="font-serif text-[38px] leading-none tracking-[-0.035em] text-[#14160f] sm:text-[44px]"
+              >
+                {outlets[0].name}
+              </h3>
+
+              <div
+                class="mt-4 flex items-start gap-2 text-[15px] text-[#575b53] sm:text-[16px]"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="mt-0.5 h-[19px] w-[19px] shrink-0 text-[#737e4d]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+
+                <span id="outlet-address">
+                  {outlets[0].address}
+                </span>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div
+              class="flex w-full flex-col gap-3 sm:flex-row xl:w-auto xl:min-w-[250px] xl:flex-col"
+            >
+              <!-- Directions -->
+              <a
+                id="directions-button"
+                href={outlets[0].directions}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex flex-1 items-center justify-center gap-3 rounded-full bg-[#778149] px-7 py-4 text-[15px] font-medium text-white transition-all duration-300 hover:bg-[#68733d] hover:shadow-[0_10px_30px_rgba(94,105,53,0.22)]"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  aria-hidden="true"
+                >
+                  <path d="m21 3-7.5 18-3.2-7.3L3 10.5 21 3Z" />
+                  <path d="m10.3 13.7 4.5-4.5" />
+                </svg>
+
+                <span>Get Directions</span>
+              </a>
+
+              <!-- Reservation -->
+              <a
+                id="reserve-button"
+                href={`/reservation?outlet=${outlets[0].id}`}
+                class="group flex flex-1 items-center justify-center gap-3 rounded-full border border-[#8b916f] bg-transparent px-7 py-4 text-[15px] font-medium text-[#697346] transition-all duration-300 hover:bg-[#778149] hover:text-white"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="16" rx="2" />
+                  <path d="M16 3v4M8 3v4M3 10h18" />
+                  <path d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01" />
+                </svg>
+
+                <span>Reserve a Table</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- ====================================================
+               DETAILS
+               ==================================================== -->
+
+          <div
+            class="mt-7 grid border-t border-[#dedfd5] pt-6 sm:grid-cols-3"
+          >
+            <!-- Hours -->
+            <div
+              class="flex gap-4 border-b border-[#dedfd5] pb-5 sm:border-b-0 sm:border-r sm:pr-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                class="mt-0.5 h-7 w-7 shrink-0 text-[#73804c]"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3.5 2" />
+              </svg>
+
+              <div>
+                <p class="text-[15px] font-medium text-[#282b24]">
+                  Opening Hours
+                </p>
+
+                <p
+                  id="outlet-hours"
+                  class="mt-2 text-[14px] leading-6 text-[#65685f]"
+                >
+                  {outlets[0].hours}<br />
+                  {outlets[0].days}
+                </p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div
+              class="flex gap-4 border-b border-[#dedfd5] py-5 sm:border-b-0 sm:border-r sm:px-6 sm:py-0"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                class="mt-0.5 h-7 w-7 shrink-0 text-[#73804c]"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6.5 3.5h3l1.5 4-2.2 1.7a15 15 0 0 0 5.9 5.9l1.7-2.2 4 1.5v3c0 1.1-.9 2-2 2C11 19.4 4.6 13 4.6 5.5c0-1.1.8-2 1.9-2Z"
+                />
+              </svg>
+
+              <div>
+                <p class="text-[15px] font-medium text-[#282b24]">
+                  Call Us
+                </p>
+
+                <a
+                  id="outlet-phone"
+                  href={`tel:${outlets[0].phone}`}
+                  class="mt-2 block text-[14px] text-[#65685f] transition hover:text-[#697346]"
+                >
+                  {outlets[0].phone}
+                </a>
+              </div>
+            </div>
+
+            <!-- Distance -->
+            <div class="flex gap-4 pt-5 sm:px-6 sm:pt-0">
+              <svg
+                viewBox="0 0 24 24"
+                class="mt-0.5 h-7 w-7 shrink-0 text-[#73804c]"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <path d="M5 17V8l14-3v9L5 17Z" />
+                <path d="M8 17v3M16 13v3" />
+                <path d="M7 20h3M14 16h3" />
+                <circle cx="8.5" cy="12" r="1.5" />
+                <circle cx="16" cy="9" r="1.5" />
+              </svg>
+
+              <div>
+                <p class="text-[15px] font-medium text-[#282b24]">
+                  Distance
+                </p>
+
+                <p
+                  id="outlet-distance"
+                  class="mt-2 text-[14px] text-[#65685f]"
+                >
+                  {outlets[0].distance}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         BOTTOM DECORATIVE LINE
+         ============================================================ -->
+
+    <div class="mt-12 flex items-center justify-center gap-4 text-[#7a8550]">
+      <span class="h-px w-16 bg-[#cfd1c3] sm:w-28"></span>
+
+      <svg
+        viewBox="0 0 24 24"
+        class="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.3"
+        aria-hidden="true"
+      >
+        <path d="M12 21V8" />
+        <path d="M12 13C8.5 13 6 10.5 6 7c3.5 0 6 2.5 6 6Z" />
+        <path d="M12 16c3.5 0 6-2.5 6-6-3.5 0-6 2.5-6 6Z" />
+      </svg>
+
+      <span class="h-px w-16 bg-[#cfd1c3] sm:w-28"></span>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .outlet-selector.is-active {
+    background: #e9eadb;
+  }
+
+  .outlet-selector.is-active [data-active-indicator] {
+    transform: scaleY(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .outlet-selector,
+    .outlet-selector *,
+    #outlet-image {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  const outlets = [
+  {
+    id: "patliputra",
+    name: "Patliputra",
+    city: "Patna",
+    image: "https://images.unsplash.com/photo-1481833761820-0509d3217039?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cmVzdGF1cmFudCUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D",
+    address: "Patliputra Road, Near AIIMS, Patna, Bihar 800013",
+    hours: "11:00 AM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "2.4 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Patliputra%20Road%2C%20Patna%2C%20Bihar",
+  },
+  {
+    id: "patna-one-mall",
+    name: "Patna One Mall",
+    city: "Patna",
+    image: "https://images.unsplash.com/photo-1712630514718-3830cc6c0d0a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJlc3RhdXJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+    address: "Patna One Mall, Patna, Bihar",
+    hours: "11:00 AM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "5.8 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Patna%20One%20Mall%2C%20Patna",
+  },
+  {
+    id: "foresto-bistro",
+    name: "Foresto Bistro",
+    city: "Patna",
+    image: "https://images.unsplash.com/photo-1521917441209-e886f0404a7b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHJlc3RhdXJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+    address: "Foresto Bistro, Patna, Bihar",
+    hours: "12:00 PM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "7.1 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Foresto%20Bistro%2C%20Patna",
+  },
+  {
+    id: "lucknow",
+    name: "Lucknow",
+    city: "Lucknow",
+    image: "https://images.unsplash.com/photo-1608816042754-d69cb2271bea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHJlc3RhdXJhbnQlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww",
+    address: "Foresto Paradise, Lucknow, Uttar Pradesh",
+    hours: "11:00 AM – 11:00 PM",
+    days: "Everyday",
+    phone: "+91 91234 56789",
+    distance: "482 km away",
+    directions:
+      "https://www.google.com/maps/search/?api=1&query=Foresto%20Paradise%2C%20Lucknow",
+  },
+];
+
+  const selectors = document.querySelectorAll(".outlet-selector");
+
+  const image = document.querySelector("#outlet-image");
+  const name = document.querySelector("#outlet-name");
+  const address = document.querySelector("#outlet-address");
+  const hours = document.querySelector("#outlet-hours");
+  const phone = document.querySelector("#outlet-phone");
+  const distance = document.querySelector("#outlet-distance");
+  const directions = document.querySelector("#directions-button");
+  const reserve = document.querySelector("#reserve-button");
+
+  function updateOutlet(id: string) {
+    const outlet = outlets.find((item) => item.id === id);
+
+    if (!outlet) return;
+
+    /*
+     * Fade the image out before changing the source.
+     */
+    image?.classList.add("opacity-0", "scale-[1.02]");
+
+    /*
+     * Fade the text content slightly.
+     */
+    [name, address, hours, phone, distance].forEach((element) => {
+      element?.classList.add("opacity-0", "translate-y-1");
+    });
+
+    setTimeout(() => {
+      if (image) {
+        image.setAttribute("src", outlet.image);
+        image.setAttribute("alt", outlet.name);
+      }
+
+      if (name) name.textContent = outlet.name;
+      if (address) address.textContent = outlet.address;
+
+      if (hours) {
+        hours.innerHTML = `${outlet.hours}<br />${outlet.days}`;
+      }
+
+      if (phone) {
+        phone.textContent = outlet.phone;
+        phone.setAttribute("href", `tel:${outlet.phone}`);
+      }
+
+      if (distance) {
+        distance.textContent = outlet.distance;
+      }
+
+      if (directions) {
+        directions.setAttribute("href", outlet.directions);
+      }
+
+      if (reserve) {
+        reserve.setAttribute(
+          "href",
+          `/reservation?outlet=${encodeURIComponent(outlet.id)}`
+        );
+      }
+
+      /*
+       * Animate everything back in.
+       */
+      requestAnimationFrame(() => {
+        image?.classList.remove("opacity-0", "scale-[1.02]");
+
+        [name, address, hours, phone, distance].forEach((element) => {
+          element?.classList.remove("opacity-0", "translate-y-1");
+        });
+      });
+    }, 280);
+
+    /*
+     * Update active outlet.
+     */
+    selectors.forEach((selector) => {
+      const selectorId = selector.getAttribute("data-outlet");
+
+      const active = selectorId === outlet.id;
+
+      selector.classList.toggle("is-active", active);
+      selector.setAttribute("aria-pressed", active ? "true" : "false");
+
+      const indicator = selector.querySelector(
+        "[data-active-indicator]"
+      );
+
+      if (indicator) {
+        indicator.classList.toggle("scale-y-100", active);
+        indicator.classList.toggle("scale-y-0", !active);
+      }
+    });
+  }
+
+  selectors.forEach((selector) => {
+    selector.addEventListener("click", () => {
+      const id = selector.getAttribute("data-outlet");
+
+      if (id) {
+        updateOutlet(id);
+      }
+    });
+  });
+
+  /*
+   * Scroll reveal animation.
+   */
+  const revealElements = document.querySelectorAll("[data-reveal]");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+  } else {
+    revealElements.forEach((element) =>
+      element.classList.add("is-visible")
+    );
+  }
+</script>

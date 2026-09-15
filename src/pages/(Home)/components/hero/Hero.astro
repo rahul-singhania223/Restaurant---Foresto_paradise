@@ -1,0 +1,653 @@
+---
+import { Image } from "astro:assets";
+
+const navItems = [
+  { label: "Home", href: "/", active: true },
+  { label: "Menu", href: "/menu" },
+  { label: "Locations", href: "/locations" },
+  // { label: "Experience", href: "/experience" },
+  // { label: "Events", href: "/events" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+---
+
+<section
+  id="hero"
+  class="relative isolate min-h-screen overflow-hidden bg-[#090c08] text-white"
+>
+  <!-- ============================================================
+       BACKGROUND IMAGE
+       Replace with your actual hero image
+       ============================================================ -->
+
+  <div class="absolute inset-0 -z-30">
+    <!-- <div
+      class="absolute inset-0 bg-[#172018]"
+      aria-hidden="true"
+    ></div> -->
+
+    <Image
+      src="/images/hero-background.png"
+      alt=""
+      class="h-full w-full object-cover object-center"
+      aria-hidden="true"
+      width={1620}
+      height={900}
+      format="webp"
+    />
+  </div>
+
+
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+
+  <header class="absolute inset-x-0 top-0 z-50">
+    <nav
+      class="mx-auto flex h-[104px] max-w-[1720px] items-center px-6 sm:px-10 lg:px-16 xl:px-20"
+      aria-label="Main navigation"
+    >
+
+      <!-- Logo placeholder -->
+      <a
+        href="/"
+        class="flex h-[62px] w-[170px] shrink-0 items-center"
+        aria-label="Foresto Paradise"
+      >
+        <Image
+          class={"w-32 lg:w-48"}
+          src="/images/logo.png"
+          alt="Foresto Paradise"
+          width={500}
+          height={500}
+          loading="eager"
+        />
+      </a>
+
+
+      <!-- Desktop navigation -->
+      <div class="ml-auto hidden items-center lg:flex">
+
+        <div class="flex items-center gap-7 xl:gap-9">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  "group relative py-3 text-[14px] font-medium transition-colors duration-300",
+                  item.active
+                    ? "text-white"
+                    : "text-white/80 hover:text-white",
+                ]}
+              >
+                {item.label}
+
+                <span
+                  class:list={[
+                    "absolute bottom-0 left-0 h-px bg-[#c9c486] transition-all duration-300",
+                    item.active
+                      ? "w-full"
+                      : "w-0 group-hover:w-full",
+                  ]}
+                ></span>
+              </a>
+            ))
+          }
+        </div>
+
+
+        <!-- Navbar actions -->
+        <div class="ml-12 flex items-center gap-4 xl:ml-14">
+
+          <a
+            href="/order"
+            class="inline-flex h-[48px] items-center justify-center rounded-full border border-white/35 bg-black/10 px-6 text-[14px] font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-white/60 hover:bg-white/10"
+          >
+            Order Online
+          </a>
+
+          <button
+            data-reservation-trigger
+
+            class="inline-flex h-[48px] items-center justify-center rounded-full bg-[#b8b878] px-7 text-[14px] font-medium text-[#15180f] shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:bg-[#d0cf8b] hover:shadow-[0_10px_35px_rgba(190,190,120,0.2)]"
+          >
+            Book a Table
+        </button>
+
+        </div>
+      </div>
+
+
+      <!-- Mobile menu button -->
+      <button
+        id="hero-menu-button"
+        type="button"
+        class="ml-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/20 backdrop-blur-md lg:hidden"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        <svg
+          id="hero-menu-open-icon"
+          viewBox="0 0 24 24"
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M4 7h16" />
+          <path d="M4 12h16" />
+          <path d="M4 17h16" />
+        </svg>
+
+        <svg
+          id="hero-menu-close-icon"
+          viewBox="0 0 24 24"
+          class="hidden h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="m6 6 12 12" />
+          <path d="m18 6-12 12" />
+        </svg>
+      </button>
+    </nav>
+
+
+    <!-- Mobile navigation -->
+    <div
+      id="hero-mobile-menu"
+      class="mx-4 hidden overflow-hidden rounded-2xl border border-white/10 bg-[#0d120c]/95 shadow-2xl backdrop-blur-2xl lg:hidden"
+    >
+      <div class="p-4">
+
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "block rounded-xl px-4 py-3.5 text-sm transition-colors",
+                item.active
+                  ? "bg-white/10 text-[#d0ca83]"
+                  : "text-white/75 hover:bg-white/5 hover:text-white",
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+
+        <div class="mt-3 grid grid-cols-2 gap-3 border-t border-white/10 pt-4">
+
+          <a
+            href="/order"
+            class="flex h-12 items-center justify-center rounded-full border border-white/20 text-sm"
+          >
+            Order Online
+          </a>
+
+          <button
+             data-reservation-trigger
+
+            class="flex h-12 items-center justify-center rounded-full bg-[#b8b878] text-sm font-medium text-[#15180f]"
+          >
+            Book a Table
+        </button>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       MAIN HERO CONTENT
+       ============================================================ -->
+
+  <div
+    class="relative mx-auto flex min-h-screen max-w-[1720px] items-center px-6 pb-28 pt-32 sm:px-10 lg:px-16 xl:px-20"
+  >
+
+    <!-- ==========================================================
+         LEFT CONTENT
+         ========================================================== -->
+
+    <div
+      class="relative z-20 w-full max-w-[730px] lg:mt-5"
+    >
+
+      <!-- Eyebrow -->
+      <div
+        class="hero-reveal hero-reveal--1 mb-7 inline-flex items-center gap-2.5 rounded-full border border-[#c9c486]/20 bg-[#172016]/45 px-4 py-2 backdrop-blur-md"
+      >
+
+
+        <Image
+          src="/images/leaf-1.png"
+          alt=""
+          class="w-10 -mr-4 -ml-4"
+          width={100}
+          height={100}
+          format="webp"
+        />
+
+        <span
+          class="text-[11px] font-medium tracking-[0.05em] text-[#c9c486] sm:text-xs"
+        >
+          A Restaurant Like No Other
+        </span>
+      </div>
+
+
+      <!-- ========================================================
+           HEADLINE
+
+           Cormorant Garamond / Playfair-style serif.
+           Make sure your global font setup loads your preferred
+           serif font.
+           ======================================================== -->
+
+      <h1
+        class="hero-reveal hero-reveal--2 font-serif text-[clamp(4rem,6.5vw,6.8rem)] font-normal leading-[0.88] tracking-[-0.055em]"
+      >
+        <span class="block text-[#f4f3ee]">
+          Good Food.
+        </span>
+
+        <span
+          class="mt-1 block bg-gradient-to-r from-[#ddd58f] via-[#c1bf78] to-[#8b925f] bg-clip-text text-transparent"
+        >
+          Great Moments.
+        </span>
+      </h1>
+
+
+      <!-- Description -->
+      <p
+        class="hero-reveal hero-reveal--3 mt-8 max-w-[500px] text-[15px] leading-7 text-white/70 sm:text-base sm:leading-7"
+      >
+        Thoughtfully prepared food, warm spaces,
+        <br class="hidden sm:block" />
+        and moments worth staying for.
+      </p>
+
+
+      <!-- ========================================================
+           CTA BUTTONS
+           ======================================================== -->
+
+      <div class="hero-reveal hero-reveal--4 mt-9 flex flex-wrap items-center gap-4">
+
+        <!-- Primary CTA -->
+        <a
+          href="/menu"
+          class="group inline-flex h-[60px] items-center gap-5 rounded-full bg-[#b9b978] px-7 text-[14px] font-medium text-[#15180f] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#d0cf8c] hover:shadow-[0_15px_40px_rgba(185,185,120,0.2)]"
+        >
+          <span>Explore Menu</span>
+
+          <svg
+            viewBox="0 0 20 20"
+            class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M4 16 16 4" />
+            <path d="M8 4h8v8" />
+          </svg>
+        </a>
+
+
+        <!-- Secondary CTA -->
+        <button
+          data-reservation-trigger
+      
+          class="hero-reveal hero-reveal--5 group inline-flex h-[60px] items-center gap-5 rounded-full border border-white/30 bg-black/10 px-7 text-[14px] font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/10"
+        >
+          <span>Book a Table</span>
+
+          <svg
+            viewBox="0 0 24 24"
+            class="h-[18px] w-[18px]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <rect x="4" y="5" width="16" height="15" rx="2" />
+            <path d="M8 3v4M16 3v4M4 10h16" />
+          </svg>
+        </button>
+
+      </div>
+
+
+      <!-- ========================================================
+           SOCIAL PROOF
+           ======================================================== -->
+
+      <div class="mt-12 flex items-center gap-4">
+
+        <!-- Avatar stack -->
+        <div class="flex -space-x-3">
+
+          <div
+            class="h-11 w-11 overflow-hidden rounded-full border-2 border-[#11140d] bg-[#555d47]"
+          >
+            <img
+              src="https://images.pexels.com/photos/31848622/pexels-photo-31848622.jpeg"
+              alt=""
+              class="h-full w-full object-cover"
+            />
+          </div>
+
+          <div
+            class="h-11 w-11 overflow-hidden rounded-full border-2 border-[#11140d] bg-[#697052]"
+          >
+            <img
+              src="https://images.pexels.com/photos/16826482/pexels-photo-16826482.jpeg"
+              alt=""
+              class="h-full w-full object-cover"
+            />
+          </div>
+
+          <div
+            class="h-11 w-11 overflow-hidden rounded-full border-2 border-[#11140d] bg-[#4c5440]"
+          >
+            <img
+              src="https://images.pexels.com/photos/38724168/pexels-photo-38724168.jpeg"
+              alt=""
+              class="h-full w-full object-cover"
+            />
+          </div>
+
+          <div
+            class="h-11 w-11 overflow-hidden rounded-full border-2 border-[#11140d] bg-[#737858]"
+          >
+            <img
+              src="https://images.pexels.com/photos/20181989/pexels-photo-20181989.jpeg"
+              alt=""
+              class="h-full w-full object-cover"
+            />
+          </div>
+
+        </div>
+
+
+        <!-- Rating -->
+        <div class="flex flex-col gap-1">
+
+          <div class="flex items-center gap-2">
+
+            <span class="text-[18px] font-medium leading-none text-white">
+              4.8
+            </span>
+
+            <svg
+              viewBox="0 0 24 24"
+              class="h-4 w-4 fill-[#d0c66c] text-[#d0c66c]"
+              aria-hidden="true"
+            >
+              <path
+                d="m12 3 2.78 5.63 6.22.9-4.5 4.39 1.06 6.2L12 17.2l-5.56 2.92 1.06-6.2L3 9.53l6.22-.9L12 3Z"
+              />
+            </svg>
+
+          </div>
+
+          <span class="text-[11px] text-white/55">
+            2,350+ Happy Guests
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==========================================================
+         RIGHT-SIDE VISUAL DETAILS
+         ========================================================== -->
+
+    <div
+      class="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
+    >
+
+      <!-- ========================================================
+           FRESHLY PREPARED GLASS BLOB
+           ======================================================== -->
+
+      <div
+        class="hero-reveal hero-reveal--6 absolute left-[15%] top-[25%] flex h-[140px] w-[165px] items-center justify-center rounded-[46%_54%_58%_42%/42%_47%_53%_58%] border border-[#d7cf8b]/40 bg-white/[0.035] shadow-[0_20px_50px_rgba(0,0,0,0.14),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-[18px] animate-float"
+      >
+
+        <!-- glass reflection -->
+        <div
+          class="absolute inset-0 overflow-hidden rounded-[inherit]"
+        >
+          <div
+            class="absolute -left-[20%] -top-[35%] h-[80%] w-[110%] rotate-[-12deg] rounded-full bg-[radial-gradient(ellipse,rgba(255,255,255,0.10),transparent_70%)] blur-[16px]"
+          ></div>
+        </div>
+
+        <!-- Border highlight -->
+        <div
+          class="absolute inset-0 rounded-[inherit] bg-[linear-gradient(145deg,rgba(235,228,165,0.25),transparent_35%,rgba(255,255,255,0.08)_70%,rgba(210,204,140,0.22))]"
+        ></div>
+
+        <div
+          class="relative z-10 flex flex-col items-center gap-2.5 text-center"
+        >
+          <Image
+            src={"/images/leaf-2.png"}
+            alt="Freshly Prepared"
+            class="w-20"
+            width={100}
+            height={100}
+          />
+          <span
+            class="text-[15px] leading-[1.35] text-white/90"
+          >
+            Freshly<br />
+            Prepared
+          </span>
+
+        </div>
+      </div>
+
+
+      <!-- ========================================================
+           NATURAL INGREDIENTS GLASS CARD
+           ======================================================== -->
+
+      <div
+        class="hero-reveal hero-reveal--7 absolute bottom-[13%] right-[3%] w-[280px] rounded-[30px] border border-[#d3cb87]/30 bg-white/[0.035] px-7 py-6 shadow-[0_25px_70px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.10)] backdrop-blur-[18px]"
+      >
+
+        <!-- reflection -->
+        <div
+          class="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+        >
+          <div
+            class="absolute -left-[20%] -top-[50%] h-[120%] w-[70%] rounded-full bg-white/[0.035] blur-3xl"
+          ></div>
+        </div>
+
+
+        <div class="relative z-10 flex items-start justify-between">
+
+          <div class="flex gap-3">
+
+            <svg
+              viewBox="0 0 24 24"
+              class="mt-0.5 h-5 w-5 shrink-0 text-[#c9c276]"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.3"
+              aria-hidden="true"
+            >
+              <path d="M12 21V8" />
+              <path d="M12 12C8.5 12 6 9.5 6 6c3.5 0 6 2.5 6 6Z" />
+              <path d="M12 15c3.5 0 6-2.5 6-9-3.5 0-6 2.5-6 6Z" />
+            </svg>
+
+            <div>
+              <p class="text-xs text-[#d0ca8a]">
+                Natural Ingredients
+              </p>
+
+              <p class="mt-1 text-sm font-medium text-white/95">
+                Better Taste
+              </p>
+            </div>
+
+          </div>
+
+
+          <svg
+            viewBox="0 0 24 24"
+            class="mt-5 h-5 w-5 text-[#d0ca8a]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.2"
+            aria-hidden="true"
+          >
+            <path d="M5 12h13" />
+            <path d="m13 7 5 5-5 5" />
+          </svg>
+
+        </div>
+
+
+        <div class="relative z-10 mt-5 h-px bg-[#d0ca8a]/20"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==========================================================
+         SCROLL INDICATOR
+         ========================================================== -->
+
+    <div
+      class="absolute bottom-8 right-8 z-30 hidden items-center gap-4 lg:flex"
+    >
+
+      <span
+        class="rotate-90 text-[9px] font-medium uppercase tracking-[0.3em] text-white/40"
+      >
+        Scroll
+      </span>
+
+      <div class="flex flex-col items-center gap-3">
+
+        <span
+          class="h-2.5 w-2.5 rounded-full border border-white/75"
+        ></span>
+
+        <span
+          class="h-2.5 w-2.5 rounded-full border border-white/30"
+        ></span>
+
+        <span
+          class="h-20 w-px bg-gradient-to-b from-white/50 to-white/5"
+        ></span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ============================================================
+       MOBILE IMAGE
+       ============================================================ -->
+
+  <div
+    class="relative z-10 mx-6 mb-20 overflow-hidden rounded-[28px] border border-white/10 bg-white/5 lg:hidden"
+  >
+
+    <div class="aspect-[4/3]">
+      <img
+        src="/images/hero-mobile.png"
+        alt="Foresto Paradise"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <!-- Image overlay -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"
+    ></div>
+
+
+    <!-- Mobile glass badge -->
+    <div
+      class="absolute right-4 top-4 flex h-[105px] w-[125px] items-center justify-center rounded-[45%_55%_58%_42%/44%_48%_52%_56%] border border-[#d7cf8b]/40 bg-white/[0.035] text-center shadow-lg backdrop-blur-[18px]"
+    >
+
+      <div class="flex flex-col items-center gap-1.5">
+
+        <svg
+          viewBox="0 0 24 24"
+          class="h-5 w-5 text-[#ddd58e]"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.35"
+        >
+          <path d="M12 21V8" />
+          <path d="M12 12C8.5 12 6 9.5 6 6c3.5 0 6 2.5 6 6Z" />
+          <path d="M12 15c3.5 0 6-2.5 6-6-3.5 0-6 2.5-6 6Z" />
+        </svg>
+
+        <span class="text-xs leading-4 text-white/90">
+          Freshly<br />
+          Prepared
+        </span>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+  const menuButton =
+    document.querySelector<HTMLButtonElement>("#hero-menu-button");
+
+  const mobileMenu =
+    document.querySelector<HTMLElement>("#hero-mobile-menu");
+
+  const openIcon =
+    document.querySelector<SVGElement>("#hero-menu-open-icon");
+
+  const closeIcon =
+    document.querySelector<SVGElement>("#hero-menu-close-icon");
+
+  menuButton?.addEventListener("click", () => {
+    if (!mobileMenu) return;
+
+    const isOpen = !mobileMenu.classList.contains("hidden");
+
+    mobileMenu.classList.toggle("hidden");
+
+    openIcon?.classList.toggle("hidden", !isOpen);
+    closeIcon?.classList.toggle("hidden", isOpen);
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(!isOpen)
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Open navigation" : "Close navigation"
+    );
+  });
+</script>

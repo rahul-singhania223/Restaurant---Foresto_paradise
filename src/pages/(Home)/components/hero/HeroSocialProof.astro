@@ -1,0 +1,61 @@
+---
+const guests = [
+  "/images/guest-1.webp",
+  "/images/guest-2.webp",
+  "/images/guest-3.webp",
+  "/images/guest-4.webp",
+];
+---
+
+<div
+  class="absolute bottom-20 left-6 z-30 sm:left-10 lg:bottom-16 lg:left-16 xl:left-20"
+>
+  <div class="flex items-center gap-4">
+
+    <!-- Avatar stack -->
+    <div class="flex -space-x-3">
+      {
+        guests.map((guest, index) => (
+          <div
+            class="h-11 w-11 overflow-hidden rounded-full border-2 border-[#11140e] bg-[#34382b]"
+            style={`z-index:${guests.length - index}`}
+          >
+            <img
+              src={guest}
+              alt=""
+              class="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+
+    <!-- Rating -->
+    <div class="flex flex-col gap-0.5">
+
+      <div class="flex items-center gap-2">
+        <span class="text-lg font-medium leading-none text-white">
+          4.8
+        </span>
+
+        <svg
+          viewBox="0 0 24 24"
+          class="h-4 w-4 fill-[#d1c76c] text-[#d1c76c]"
+          aria-hidden="true"
+        >
+          <path
+            d="m12 3 2.78 5.63 6.22.9-4.5 4.39 1.06 6.2L12 17.2l-5.56 2.92 1.06-6.2L3 9.53l6.22-.9L12 3Z"
+          />
+        </svg>
+      </div>
+
+      <span class="text-[11px] text-white/55">
+        2,350+ Happy Guests
+      </span>
+
+    </div>
+
+  </div>
+</div>

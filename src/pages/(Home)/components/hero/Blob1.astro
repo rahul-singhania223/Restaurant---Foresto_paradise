@@ -1,0 +1,295 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={[
+    "hero-blob",
+    className,
+  ]}
+>
+  <div class="hero-blob__content">
+
+    <!-- Leaf icon -->
+    <svg
+      viewBox="0 0 24 24"
+      class="hero-blob__icon"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.35"
+      aria-hidden="true"
+    >
+      <path d="M12 21V8" />
+      <path d="M12 12C8.5 12 6 9.5 6 6c3.5 0 6 2.5 6 6Z" />
+      <path d="M12 15c3.5 0 6-2.5 6-6-3.5 0-6 2.5-6 6Z" />
+      <path d="M12 8c0-2.7 1.6-5 4-6 0 3-1.6 5.2-4 6Z" />
+    </svg>
+
+    <span class="hero-blob__text">
+      Freshly<br />
+      Prepared
+    </span>
+
+  </div>
+</div>
+
+<style>
+  .hero-blob {
+    position: relative;
+
+    width: 180px;
+    height: 145px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* ============================================================
+       ORGANIC BLOB SHAPE
+       ============================================================ */
+
+    border-radius:
+      46% 54% 58% 42%
+      / 42% 47% 53% 58%;
+
+
+    /* ============================================================
+       TRUE GLASS SURFACE
+
+       Very low opacity is intentional.
+       The background image should remain clearly visible.
+       ============================================================ */
+
+    /* background:
+      linear-gradient(
+        135deg,
+        rgba(160, 169, 115, 0.13),
+        rgba(72, 82, 54, 0.06) 45%,
+        rgba(255, 255, 255, 0.025) 100%
+      ); */
+
+    /*
+     * Stronger blur creates the actual frosted-glass effect.
+     */
+    backdrop-filter:
+      blur(18px)
+      saturate(120%);
+
+    -webkit-backdrop-filter:
+      blur(18px)
+      saturate(120%);
+
+
+    /* ============================================================
+       DEPTH
+       ============================================================ */
+
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.14),
+
+      /* very subtle inner glass highlight */
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+
+      /* subtle bottom darkness */
+      inset 0 -1px 0 rgba(0, 0, 0, 0.10);
+
+    color: rgba(255, 255, 255, 0.94);
+
+    isolation: isolate;
+
+    overflow: hidden;
+  }
+
+
+  /* ============================================================
+     GLASS BORDER
+
+     Thin, uneven-looking luminous edge.
+     ============================================================ */
+
+  .hero-blob::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    padding: 1px;
+
+    /* background:
+      linear-gradient(
+        145deg,
+        rgba(235, 228, 165, 0.72) 0%,
+        rgba(220, 214, 151, 0.34) 22%,
+        rgba(255, 255, 255, 0.14) 50%,
+        rgba(190, 188, 132, 0.08) 75%,
+        rgba(255, 255, 255, 0.22) 100%
+      ); */
+
+    /*
+     * Keep only the border.
+     */
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+
+    mask-composite: exclude;
+
+    pointer-events: none;
+
+    z-index: 10;
+  }
+
+
+  /* ============================================================
+     GLASS REFLECTION
+
+     Faint light passing across the upper-left portion.
+     ============================================================ */
+
+  .hero-blob::after {
+    content: "";
+
+    position: absolute;
+
+    width: 110%;
+    height: 75%;
+
+    top: -35%;
+    left: -20%;
+
+    border-radius: 50%;
+
+    /* background:
+      radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.105) 0%,
+        rgba(255, 255, 255, 0.035) 35%,
+        transparent 90%
+      ); */
+
+    filter: blur(6px);
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    transform: rotate(-12deg);
+  }
+
+
+  /* ============================================================
+     CONTENT
+     ============================================================ */
+
+  .hero-blob__content {
+    position: relative;
+
+    z-index: 20;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: center;
+
+    transform: translateY(-1px);
+  }
+
+
+  /* ============================================================
+     LEAF ICON
+     ============================================================ */
+
+  .hero-blob__icon {
+    width: 27px;
+    height: 27px;
+
+    color: #ddd58e;
+
+    filter:
+      drop-shadow(
+        0 2px 8px rgba(221, 213, 142, 0.18)
+      );
+  }
+
+
+  /* ============================================================
+     TEXT
+     ============================================================ */
+
+  .hero-blob__text {
+    font-family: inherit;
+
+    font-size: 15px;
+    line-height: 1.35;
+
+    font-weight: 400;
+
+    letter-spacing: -0.01em;
+
+    /* color: rgba(255, 255, 255, 0.94); */
+
+    text-shadow:
+      0 1px 10px rgba(0, 0, 0, 0.35);
+  }
+
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+
+  @media (max-width: 640px) {
+    .hero-blob {
+      width: 150px;
+      height: 125px;
+
+      backdrop-filter:
+        blur(15px)
+        saturate(120%);
+
+      -webkit-backdrop-filter:
+        blur(15px)
+        saturate(120%);
+    }
+
+    .hero-blob__icon {
+      width: 23px;
+      height: 23px;
+    }
+
+    .hero-blob__text {
+      font-size: 13px;
+    }
+  }
+
+
+  /* ============================================================
+     FALLBACK
+
+     If backdrop-filter isn't supported, keep it subtle rather
+     than turning it into an opaque card.
+     ============================================================ */
+
+  @supports not (
+    backdrop-filter: blur(18px)
+  ) {
+    /* .hero-blob {
+      background:
+        rgba(42, 51, 34, 0.28);
+    } */
+  }
+</style>

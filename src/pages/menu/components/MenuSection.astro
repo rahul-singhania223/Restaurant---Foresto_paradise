@@ -1,0 +1,182 @@
+---
+import MenuItem from "./MenuItem.astro";
+
+interface MenuItemData {
+  name: string;
+  description?: string;
+  price: string;
+  vegetarian?: boolean;
+  spicy?: boolean;
+  popular?: boolean;
+  image: string;
+}
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: MenuItemData[];
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  items,
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class="menu-section bg-[#f8f7f2] px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28 xl:px-20"
+  style="scroll-margin-top: 96px;"
+>
+  <div class="mx-auto max-w-[1320px]">
+
+    <!-- ============================================================
+         SECTION HEADER
+         ============================================================ -->
+
+    <div
+      class="grid gap-8 border-b border-[#dcdcd2] pb-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end"
+    >
+
+      <!-- Title -->
+
+      <div>
+        {
+          eyebrow && (
+            <div
+              data-reveal
+              data-delay="0"
+              class="mb-4 flex items-center gap-3"
+            >
+              <span class="h-px w-8 bg-[#b8b878]"></span>
+
+              <span
+                class="text-[10px] font-medium uppercase tracking-[0.24em] text-[#74765e]"
+              >
+                {eyebrow}
+              </span>
+            </div>
+          )
+        }
+
+        <h2
+          data-reveal
+          data-delay="100"
+          class="font-serif text-[clamp(3rem,5vw,5rem)] font-normal leading-[0.9] tracking-[-0.045em] text-[#171a14]"
+        >
+          {title}
+        </h2>
+      </div>
+
+      <!-- Description -->
+
+      {
+        description && (
+          <p
+            data-reveal
+            data-delay="200"
+            class="max-w-[520px] text-[14px] leading-7 text-[#707169] lg:ml-auto lg:text-[15px]"
+          >
+            {description}
+          </p>
+        )
+      }
+    </div>
+
+    <!-- ============================================================
+         MENU ITEMS
+         ============================================================ -->
+
+    <div class="grid gap-x-16 md:grid-cols-2">
+      {
+        items.map((item, index) => (
+          <div
+            data-reveal
+            data-delay={`${300 + index * 100}`}
+          >
+            <MenuItem
+              {...item}
+              index={index}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================
+     ANIMATION
+     ================================================================ -->
+
+<script>
+  const revealElements =
+    document.querySelectorAll<HTMLElement>("[data-reveal]");
+
+  if (
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const element = entry.target as HTMLElement;
+
+          const delay =
+            element.dataset.delay ?? "0";
+
+          element.style.setProperty(
+            "--reveal-delay",
+            `${delay}ms`
+          );
+
+          element.classList.add("is-visible");
+
+          observer.unobserve(element);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -60px 0px",
+      }
+    );
+
+    revealElements.forEach((element) =>
+      observer.observe(element)
+    );
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  }
+</script>
+
+<style>
+  /* ================================================================
+     SCROLL REVEAL
+     ================================================================ */
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition:
+      opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

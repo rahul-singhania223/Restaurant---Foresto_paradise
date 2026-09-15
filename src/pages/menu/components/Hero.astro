@@ -1,0 +1,428 @@
+---
+import { Image } from "astro:assets";
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Menu", href: "/menu", active: true },
+  { label: "Locations", href: "/locations" },
+  // { label: "Experience", href: "/experience" },
+  // { label: "Events", href: "/events" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+---
+
+<section
+  id="menu-hero"
+  class="relative isolate min-h-screen overflow-hidden bg-[#090c08] text-white"
+>
+  <!-- ============================================================
+       BACKGROUND IMAGE
+       ============================================================ -->
+
+  <div
+    class="hero-reveal-image absolute inset-0 -z-30"
+    aria-hidden="true"
+  >
+    <Image
+      src="/images/menu-hero.png"
+      alt=""
+      class="h-full w-full object-cover object-center"
+      width={1672}
+      height={941}
+      format="webp"
+      loading="eager"
+    />
+  </div>
+
+  <!-- Dark cinematic overlay -->
+
+  <div
+    class="hero-reveal-overlay absolute inset-0 -z-20 bg-gradient-to-r from-[#090c08]/95 via-[#090c08]/65 to-[#090c08]/10"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Bottom fade -->
+
+  <div
+    class="hero-reveal-overlay-bottom absolute inset-x-0 bottom-0 -z-10 h-[45%] bg-gradient-to-t from-[#090c08]/75 to-transparent"
+    aria-hidden="true"
+  ></div>
+
+  <!-- ============================================================
+       HERO CONTENT
+       ============================================================ -->
+
+  <div
+    class="relative mx-auto flex min-h-screen max-w-[1720px] items-center px-6 pb-24 pt-32 sm:px-10 lg:px-16 xl:px-20"
+  >
+    <div class="relative z-20 w-full max-w-[720px] lg:mt-5">
+
+      <!-- ========================================================
+           EYEBROW
+           ======================================================== -->
+
+      <div
+        class="hero-reveal hero-item-1 mb-7 inline-flex items-center gap-2.5 rounded-full border border-[#c9c486]/20 bg-[#172016]/45 px-4 py-2 backdrop-blur-md"
+      >
+        <Image
+          src="/images/leaf-1.png"
+          alt=""
+          class="-ml-4 -mr-4 w-10"
+          width={100}
+          height={100}
+          format="webp"
+          aria-hidden="true"
+        />
+
+        <span
+          class="text-[11px] font-medium tracking-[0.05em] text-[#c9c486] sm:text-xs"
+        >
+          Explore Our Menu
+        </span>
+      </div>
+
+      <!-- ========================================================
+           HEADING
+           ======================================================== -->
+
+      <h1
+        class="hero-reveal hero-item-2 font-serif text-[clamp(4rem,6.5vw,6.8rem)] font-normal leading-[0.88] tracking-[-0.055em]"
+      >
+        <span class="block text-[#f4f3ee]">
+          A Taste
+        </span>
+
+        <span
+          class="mt-1 block bg-gradient-to-r from-[#ddd58f] via-[#c1bf78] to-[#8b925f] bg-clip-text text-transparent"
+        >
+          Worth Remembering.
+        </span>
+      </h1>
+
+      <!-- ========================================================
+           DESCRIPTION
+           ======================================================== -->
+
+      <p
+        class="hero-reveal hero-item-3 mt-8 max-w-[510px] text-[15px] leading-7 text-white/70 sm:text-base sm:leading-7"
+      >
+        From comforting classics to signature creations,
+        every dish is thoughtfully prepared with fresh
+        ingredients and a passion for great food.
+      </p>
+
+      <!-- ========================================================
+           CTA
+           ======================================================== -->
+
+      <div
+        class="hero-reveal hero-item-4 mt-9 flex flex-wrap items-center gap-4"
+      >
+        <!-- Primary CTA -->
+
+        <a
+          href="#menu"
+          class="group inline-flex h-[60px] items-center gap-5 rounded-full bg-[#b9b978] px-7 text-[14px] font-medium text-[#15180f] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#d0cf8c] hover:shadow-[0_15px_40px_rgba(185,185,120,0.2)]"
+        >
+          <span>Explore Menu</span>
+
+          <svg
+            viewBox="0 0 20 20"
+            class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <path d="M10 3v13" />
+            <path d="m5 11 5 5 5-5" />
+          </svg>
+        </a>
+
+        <!-- Secondary CTA -->
+
+        <button
+          data-reservation-trigger
+          class="group inline-flex h-[60px] items-center gap-5 rounded-full border border-white/30 bg-black/10 px-7 text-[14px] font-medium text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/10"
+        >
+          <span>Book a Table</span>
+
+          <svg
+            viewBox="0 0 24 24"
+            class="h-[18px] w-[18px]"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            aria-hidden="true"
+          >
+            <rect
+              x="4"
+              y="5"
+              width="16"
+              height="15"
+              rx="2"
+            />
+            <path d="M8 3v4M16 3v4M4 10h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- ========================================================
+           MENU HIGHLIGHTS
+           ======================================================== -->
+
+      <div
+        class="hero-reveal hero-item-5 mt-12 flex items-center gap-6"
+      >
+        <div
+          class="h-px w-12 bg-[#c9c486]/40"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="flex items-center gap-5 text-[11px] uppercase tracking-[0.18em] text-white/45"
+        >
+          <span>Fresh Ingredients</span>
+
+          <span
+            class="h-1 w-1 rounded-full bg-[#c9c486]/50"
+            aria-hidden="true"
+          ></span>
+
+          <span>Signature Dishes</span>
+
+          <span
+            class="hidden h-1 w-1 rounded-full bg-[#c9c486]/50 sm:block"
+            aria-hidden="true"
+          ></span>
+
+          <span class="hidden sm:block">
+            Made With Care
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SCROLL INDICATOR
+         ============================================================ -->
+
+    <div
+      class="hero-reveal hero-item-scroll absolute bottom-8 right-8 z-30 hidden items-center gap-4 lg:flex"
+    >
+      <span
+        class="rotate-90 text-[9px] font-medium uppercase tracking-[0.3em] text-white/40"
+      >
+        Explore
+      </span>
+
+      <div class="flex flex-col items-center gap-3">
+        <span
+          class="h-2.5 w-2.5 rounded-full border border-white/75"
+        ></span>
+
+        <span
+          class="h-2.5 w-2.5 rounded-full border border-white/30"
+        ></span>
+
+        <span
+          class="h-20 w-px bg-gradient-to-b from-white/50 to-white/5"
+        ></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     REVEAL ANIMATION
+     ================================================================ -->
+
+<style>
+  /*
+   * Main reveal
+   *
+   * Small vertical movement + opacity gives the content
+   * a smooth premium entrance without feeling flashy.
+   */
+
+  .hero-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: opacity, transform;
+  }
+
+  /*
+   * Background image
+   *
+   * The image slowly settles from a very subtle zoom.
+   */
+
+  .hero-reveal-image {
+    opacity: 0;
+    transform: scale(1.04);
+    animation: heroImageReveal 1.6s cubic-bezier(0.22, 1, 0.36, 1)
+      forwards;
+    will-change: opacity, transform;
+  }
+
+  /*
+   * Cinematic overlays
+   */
+
+  .hero-reveal-overlay {
+    opacity: 0;
+    animation: heroOverlayReveal 1.2s ease-out 0.2s forwards;
+    will-change: opacity;
+  }
+
+  .hero-reveal-overlay-bottom {
+    opacity: 0;
+    animation: heroOverlayReveal 1.2s ease-out 0.4s forwards;
+    will-change: opacity;
+  }
+
+  /*
+   * Content stagger
+   */
+
+  .hero-item-1 {
+    animation-delay: 0.45s;
+  }
+
+  .hero-item-2 {
+    animation-delay: 0.60s;
+  }
+
+  .hero-item-3 {
+    animation-delay: 0.78s;
+  }
+
+  .hero-item-4 {
+    animation-delay: 0.92s;
+  }
+
+  .hero-item-5 {
+    animation-delay: 1.08s;
+  }
+
+  .hero-item-scroll {
+    animation-delay: 1.25s;
+  }
+
+  /*
+   * Keyframes
+   */
+
+  @keyframes heroReveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes heroImageReveal {
+    from {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes heroOverlayReveal {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  /*
+   * Accessibility
+   *
+   * Users who request reduced motion get the final state
+   * immediately.
+   */
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal,
+    .hero-reveal-image,
+    .hero-reveal-overlay,
+    .hero-reveal-overlay-bottom {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<!-- ================================================================
+     MOBILE MENU SCRIPT
+     ================================================================ -->
+
+<script>
+  const menuButton =
+    document.querySelector<HTMLButtonElement>(
+      "#menu-hero-menu-button"
+    );
+
+  const mobileMenu =
+    document.querySelector<HTMLElement>(
+      "#menu-hero-mobile-menu"
+    );
+
+  const openIcon =
+    document.querySelector<SVGElement>(
+      "#menu-hero-menu-open-icon"
+    );
+
+  const closeIcon =
+    document.querySelector<SVGElement>(
+      "#menu-hero-menu-close-icon"
+    );
+
+  menuButton?.addEventListener("click", () => {
+    if (!mobileMenu) return;
+
+    const isOpen =
+      !mobileMenu.classList.contains("hidden");
+
+    mobileMenu.classList.toggle(
+      "hidden"
+    );
+
+    openIcon?.classList.toggle(
+      "hidden",
+      !isOpen
+    );
+
+    closeIcon?.classList.toggle(
+      "hidden",
+      isOpen
+    );
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(!isOpen)
+    );
+
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen
+        ? "Open navigation"
+        : "Close navigation"
+    );
+  });
+</script>

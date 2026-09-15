@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section
+  class="relative isolate flex min-h-[420px] items-center justify-center overflow-hidden bg-[#10140e] px-6 py-24 sm:min-h-[480px] sm:px-10 lg:min-h-[520px]"
+  aria-label="Foresto Paradise dining experience"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 -z-30">
+    <Image
+      src="/images/visual-break.png"
+      alt=""
+      class="h-full w-full object-cover"
+      width={1800}
+      height={900}
+      format="webp"
+      loading="lazy"
+      aria-hidden="true"
+    />
+  </div>
+
+  <!-- Cinematic overlay -->
+  <div
+    class="absolute inset-0 -z-20 bg-black/55"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Soft center glow -->
+  <div
+    class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(185,185,120,0.12),transparent_55%)]"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-[850px] text-center">
+
+    <!-- Decorative line -->
+    <div class="mb-8 flex items-center justify-center gap-4">
+      <span class="h-px w-10 bg-[#c9c486]/50"></span>
+
+      <span class="h-1.5 w-1.5 rounded-full bg-[#c9c486]"></span>
+
+      <span class="h-px w-10 bg-[#c9c486]/50"></span>
+    </div>
+
+    <!-- Quote -->
+    <blockquote
+      class="font-serif text-[clamp(2.8rem,6vw,5.8rem)] font-normal leading-[0.95] tracking-[-0.045em] text-white"
+    >
+      More than just
+      <span class="block text-[#c9c486]">
+        a meal.
+      </span>
+    </blockquote>
+
+    <!-- Supporting copy -->
+    <p
+      class="mx-auto mt-7 max-w-[500px] text-[13px] leading-6 text-white/60 sm:text-sm sm:leading-7"
+    >
+      Good food brings people together. At Foresto Paradise,
+      every plate is part of an experience worth sharing.
+    </p>
+
+    <!-- Decorative line -->
+    <div class="mt-9 flex items-center justify-center gap-4">
+      <span class="h-px w-16 bg-white/15"></span>
+
+      <span class="text-[9px] uppercase tracking-[0.3em] text-white/40">
+        Foresto Paradise
+      </span>
+
+      <span class="h-px w-16 bg-white/15"></span>
+    </div>
+  </div>
+</section>

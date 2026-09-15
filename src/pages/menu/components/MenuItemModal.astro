@@ -1,0 +1,418 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  id: string;
+  name: string;
+  description?: string;
+  price: string;
+  image: string;
+  vegetarian?: boolean;
+  spicy?: boolean;
+  popular?: boolean;
+}
+
+const {
+  id,
+  name,
+  description,
+  price,
+  image,
+  vegetarian = false,
+  spicy = false,
+  popular = false,
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class="menu-modal pointer-events-none fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 sm:p-6"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={`${id}-title`}
+>
+  <!-- ============================================================
+       BACKDROP
+       ============================================================ -->
+
+  <div
+    class="menu-modal-backdrop absolute inset-0 bg-[#090c08]/70 opacity-0 backdrop-blur-sm"
+    data-modal-close
+  ></div>
+
+  <!-- ============================================================
+       MODAL PANEL
+       ============================================================ -->
+
+  <div
+    class="menu-modal-panel relative z-10 w-full max-w-[900px] overflow-hidden rounded-[28px] bg-[#f8f7f2] shadow-[0_30px_100px_rgba(0,0,0,0.3)]"
+  >
+    <div class="grid md:grid-cols-[0.9fr_1.1fr]">
+
+      <!-- Image -->
+
+      <div
+        class="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[520px]"
+      >
+        <Image
+          src={image}
+          alt={name}
+          width={1000}
+          height={1250}
+          format="webp"
+          class="h-full w-full object-cover"
+        />
+
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"
+        ></div>
+      </div>
+
+      <!-- Content -->
+
+      <div
+        class="relative flex flex-col justify-between p-7 sm:p-9 md:p-10"
+      >
+
+        <!-- Close -->
+
+        <button
+          type="button"
+          data-modal-close
+          class="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-[#deded5] bg-[#f8f7f2]/80 text-[#45483d] backdrop-blur-sm transition-all duration-300 hover:bg-[#e9e8df] hover:text-[#171a14]"
+          aria-label="Close"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            class="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path d="M5 5l10 10" />
+            <path d="M15 5L5 15" />
+          </svg>
+        </button>
+
+        <div>
+
+          <!-- Eyebrow -->
+
+          <div class="mb-6 flex items-center gap-3">
+            <span class="h-px w-8 bg-[#b8b878]"></span>
+
+            <span
+              class="text-[10px] font-medium uppercase tracking-[0.24em] text-[#74765e]"
+            >
+              From Our Kitchen
+            </span>
+          </div>
+
+          <!-- Title -->
+
+          <h2
+            id={`${id}-title`}
+            class="max-w-[460px] pr-10 font-serif text-[clamp(2.5rem,5vw,4.5rem)] font-normal leading-[0.92] tracking-[-0.045em] text-[#171a14]"
+          >
+            {name}
+          </h2>
+
+          <!-- Badges -->
+
+          <div class="mt-6 flex flex-wrap items-center gap-2">
+
+            {
+              vegetarian && (
+                <span
+                  class="inline-flex items-center gap-2 rounded-full border border-[#71905c]/30 bg-[#edf2e9] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#527044]"
+                >
+                  <span class="h-1.5 w-1.5 rounded-full bg-[#71905c]"></span>
+                  Vegetarian
+                </span>
+              )
+            }
+
+            {
+              spicy && (
+                <span
+                  class="inline-flex items-center gap-2 rounded-full border border-[#d8b6a8] bg-[#f5ebe7] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#8a5545]"
+                >
+                  🌶 Spicy
+                </span>
+              )
+            }
+
+            {
+              popular && (
+                <span
+                  class="rounded-full bg-[#e9e8d9] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.12em] text-[#777950]"
+                >
+                  Popular
+                </span>
+              )
+            }
+
+          </div>
+
+          <!-- Description -->
+
+          {
+            description && (
+              <p class="mt-7 max-w-[470px] text-[14px] leading-7 text-[#707169] sm:text-[15px]">
+                {description}
+              </p>
+            )
+          }
+
+        </div>
+
+        <!-- Bottom -->
+
+        <div class="mt-10 border-t border-[#deded5] pt-6">
+          <div class="flex items-center justify-between gap-6">
+
+            <div>
+              <span
+                class="block text-[9px] font-medium uppercase tracking-[0.2em] text-[#92938a]"
+              >
+                Price
+              </span>
+
+              <span
+                class="mt-1 block text-[20px] font-medium text-[#20231c]"
+              >
+                {price}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              data-modal-close
+              class="inline-flex h-11 items-center rounded-full bg-[#1b2116] px-5 text-[12px] font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2b3324]"
+            >
+              Back to Menu
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ============================================================
+     MODAL BASE
+     ============================================================ */
+
+  .menu-modal {
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 0.35s ease,
+      visibility 0.35s ease;
+  }
+
+  /* ============================================================
+     BACKDROP
+     ============================================================ */
+
+  .menu-modal-backdrop {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  /* ============================================================
+     PANEL
+     ============================================================ */
+
+  .menu-modal-panel {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.35s ease;
+  }
+
+  /* ============================================================
+     OPEN STATE
+     ============================================================ */
+
+  .menu-modal.is-open {
+    pointer-events: auto;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .menu-modal.is-open .menu-modal-backdrop {
+    opacity: 1;
+  }
+
+  .menu-modal.is-open .menu-modal-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* ============================================================
+     MOBILE
+     ============================================================ */
+
+  @media (max-width: 767px) {
+    .menu-modal {
+      align-items: flex-end;
+      padding: 0;
+    }
+
+    .menu-modal-panel {
+      max-height: 92vh;
+      overflow-y: auto;
+      border-radius: 28px 28px 0 0;
+      transform: translateY(40px);
+    }
+
+    .menu-modal.is-open .menu-modal-panel {
+      transform: translateY(0);
+    }
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-modal,
+    .menu-modal-backdrop,
+    .menu-modal-panel {
+      transition: none;
+    }
+
+    .menu-modal-panel {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * Move every menu modal directly under <body>.
+   *
+   * This is important because menu sections/cards can have
+   * transform-based reveal animations. A transformed ancestor
+   * can change the containing block of position: fixed.
+   *
+   * After this runs, the modal is a direct child of <body>,
+   * so fixed inset-0 is always relative to the viewport.
+   */
+  const moveModalsToBody = () => {
+    document.querySelectorAll<HTMLElement>(".menu-modal").forEach((modal) => {
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+    });
+  };
+
+  /**
+   * Move modals immediately.
+   */
+  moveModalsToBody();
+
+  /**
+   * Open modal.
+   */
+   const openModal = (modal: HTMLElement) => {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+
+    document.documentElement.classList.add("overflow-hidden");
+
+    const closeButton =
+      modal.querySelector<HTMLButtonElement>("[data-modal-close]");
+
+    requestAnimationFrame(() => {
+      closeButton?.focus();
+    });
+  };
+
+  /**
+   * Close modal.
+   */
+  const closeModal = (modal: HTMLElement) => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+
+    document.documentElement.classList.remove("overflow-hidden");
+  };
+
+  /**
+   * Open / close handling.
+   *
+   * Event delegation means this works even when there are
+   * many MenuItem components and many modal instances.
+   */
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+
+    if (!target) return;
+
+    /* ------------------------------------------------------------
+       OPEN
+       ------------------------------------------------------------ */
+
+    const trigger = target.closest<HTMLElement>(
+      "[data-menu-item-trigger]"
+    );
+
+    if (trigger) {
+      const modalId = trigger.dataset.modalId;
+
+      if (!modalId) return;
+
+      const modal = document.getElementById(modalId);
+
+      if (!modal) return;
+
+      openModal(modal);
+
+      return;
+    }
+
+    /* ------------------------------------------------------------
+       CLOSE
+       ------------------------------------------------------------ */
+
+    const closeButton = target.closest<HTMLElement>(
+      "[data-modal-close]"
+    );
+
+    if (closeButton) {
+      const modal = closeButton.closest<HTMLElement>(
+        ".menu-modal"
+      );
+
+      if (!modal) return;
+
+      closeModal(modal);
+
+      return;
+    }
+  });
+
+  /**
+   * Escape closes the active modal.
+   */
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    const openModalElement =
+      document.querySelector<HTMLElement>(
+        ".menu-modal.is-open"
+      );
+
+    if (!openModalElement) return;
+
+    closeModal(openModalElement);
+  });
+</script>

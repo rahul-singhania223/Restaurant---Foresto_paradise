@@ -1,0 +1,407 @@
+---
+import Navbar from "../(Home)/components/hero/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+import Hero from "./components/Hero.astro";
+import MenuCategoryNav from "./components/MenuCategoryNav.astro";
+import ChefSignature from "./components/ChefSignatures.astro";
+import MenuSection from "./components/MenuSection.astro";
+import MenuVisualBreak from "./components/MenuVisualBreak.astro";
+import DownloadMenu from "./components/DownloadMenu.astro";
+import ReservationCTA from "./components/ReservationCTA.astro";
+import Footer from "../(Home)/components/Footer.astro";
+import ReservationModal from "../../components/ReservationModal.astro";
+
+const starters = [
+  {
+    name: "Paneer Tikka",
+    description:
+      "Cottage cheese marinated with aromatic spices and grilled in the tandoor.",
+    price: "₹320",
+    image:
+      "https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    popular: true,
+  },
+  {
+    name: "Crispy Corn",
+    description:
+      "Crispy golden corn tossed with herbs and delicate spices.",
+    price: "₹280",
+    image:
+      "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Chicken Tikka",
+    description:
+      "Tender chicken marinated overnight and char-grilled to perfection.",
+    price: "₹380",
+    image:
+      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Chicken 65",
+    description:
+      "Crispy fried chicken tossed with curry leaves and aromatic spices.",
+    price: "₹350",
+    image:
+      "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1200&q=85",
+    spicy: true,
+    popular: true,
+  },
+  {
+    name: "Hara Bhara Kebab",
+    description:
+      "A wholesome blend of spinach, peas and aromatic Indian spices.",
+    price: "₹300",
+    image:
+      "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Tandoori Prawns",
+    description:
+      "Juicy prawns marinated in spices and roasted in the tandoor.",
+    price: "₹450",
+    image:
+      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=1200&q=85",
+  },
+];
+
+const soupsAndSalads = [
+  {
+    name: "Cream of Tomato Soup",
+    description:
+      "Slow-cooked tomatoes blended into a smooth, comforting soup with fresh herbs.",
+    price: "₹220",
+    image:
+      "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Hot & Sour Soup",
+    description:
+      "A warming blend of vegetables, mushrooms, herbs and aromatic spices.",
+    price: "₹240",
+    image:
+      "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    spicy: true,
+    popular: true,
+  },
+  {
+    name: "Sweet Corn Soup",
+    description:
+      "Light and comforting sweet corn soup finished with fresh vegetables.",
+    price: "₹220",
+    image:
+      "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Chicken Clear Soup",
+    description:
+      "A delicate broth with tender chicken, vegetables and fragrant herbs.",
+    price: "₹260",
+    image:
+      "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Garden Fresh Salad",
+    description:
+      "Crisp seasonal vegetables served with a light house dressing.",
+    price: "₹280",
+    image:
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Caesar Salad",
+    description:
+      "Crisp lettuce, parmesan and house dressing finished with crunchy croutons.",
+    price: "₹320",
+    image:
+      "https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    popular: true,
+  },
+];
+
+const tandoorItems = [
+  {
+    name: "Paneer Tikka",
+    description:
+      "Tender cottage cheese marinated with aromatic spices, yogurt and herbs, then grilled in the tandoor.",
+    price: "₹320",
+    image:
+      "https://images.unsplash.com/photo-1757715376287-90f24dac4593?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    popular: true,
+  },
+  {
+    name: "Tandoori Chicken",
+    description:
+      "Chicken marinated in traditional spices and yogurt, roasted in the tandoor for a smoky finish.",
+    price: "₹420",
+    image:
+      "https://images.unsplash.com/photo-1775211578178-61f06027adf3?auto=format&fit=crop&w=1200&q=85",
+    popular: true,
+  },
+  {
+    name: "Chicken Tikka",
+    description:
+      "Boneless chicken pieces marinated with fragrant spices and char-grilled until perfectly tender.",
+    price: "₹380",
+    image:
+      "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Malai Chicken Tikka",
+    description:
+      "Succulent chicken marinated in a creamy blend of cheese, herbs and delicate spices.",
+    price: "₹420",
+    image:
+      "https://images.unsplash.com/photo-1762922425226-8cfe6987e7b0?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Tandoori Mushroom",
+    description:
+      "Fresh mushrooms marinated with herbs and spices, roasted until lightly charred and flavourful.",
+    price: "₹300",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Tandoori Prawns",
+    description:
+      "Juicy prawns coated in a spiced marinade and cooked over high heat for a smoky, tender finish.",
+    price: "₹480",
+    image:
+      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Hara Bhara Kebab",
+    description:
+      "A wholesome blend of spinach, peas and aromatic spices, grilled until crisp on the outside.",
+    price: "₹300",
+    image:
+      "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Mutton Seekh Kebab",
+    description:
+      "Minced mutton blended with herbs and spices, skewered and roasted over the traditional tandoor flame.",
+    price: "₹460",
+    image:
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85",
+    spicy: true,
+  },
+];
+
+const mainCourseItems = [
+  {
+    name: "Butter Chicken",
+    description:
+      "Tender chicken simmered in a rich tomato and butter gravy, finished with cream and aromatic spices.",
+    price: "₹420",
+    image:
+      "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1200&q=85",
+    popular: true,
+  },
+  {
+    name: "Kadai Chicken",
+    description:
+      "Succulent chicken cooked with bell peppers, onions and freshly ground kadai spices.",
+    price: "₹400",
+    image:
+      "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1200&q=85",
+    spicy: true,
+  },
+  {
+    name: "Chicken Tikka Masala",
+    description:
+      "Char-grilled chicken tikka finished in a creamy, spiced tomato gravy.",
+    price: "₹430",
+    image:
+      "https://images.unsplash.com/photo-1762922425226-8cfe6987e7b0?auto=format&fit=crop&w=1200&q=85",
+    popular: true,
+  },
+  {
+    name: "Mutton Rogan Josh",
+    description:
+      "Slow-cooked tender mutton prepared with Kashmiri spices and a deeply aromatic gravy.",
+    price: "₹480",
+    image:
+      "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Paneer Butter Masala",
+    description:
+      "Soft paneer cooked in a silky tomato and butter gravy with delicate Indian spices.",
+    price: "₹360",
+    image:
+      "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    popular: true,
+  },
+  {
+    name: "Kadai Paneer",
+    description:
+      "Cottage cheese cooked with peppers, onions and freshly crushed aromatic spices.",
+    price: "₹350",
+    image:
+      "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    spicy: true,
+  },
+  {
+    name: "Dal Makhani",
+    description:
+      "Slow-cooked black lentils finished with butter and cream for a rich, comforting flavour.",
+    price: "₹320",
+    image:
+      "https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Mix Vegetable Curry",
+    description:
+      "Seasonal vegetables cooked together with fragrant spices in a wholesome house gravy.",
+    price: "₹300",
+    image:
+      "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+];
+
+const riceAndBreads = [
+  {
+    name: "Veg Biryani",
+    description:
+      "Fragrant basmati rice layered with seasonal vegetables and aromatic spices.",
+    price: "₹320",
+    image:
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    popular: true,
+  },
+  {
+    name: "Chicken Biryani",
+    description:
+      "Long-grain basmati rice slow-cooked with tender chicken, herbs and traditional spices.",
+    price: "₹420",
+    image:
+      "https://images.unsplash.com/photo-1559528896-c5310744cce8?auto=format&fit=crop&w=1200&q=85",
+    popular: true,
+  },
+  {
+    name: "Mutton Biryani",
+    description:
+      "Tender mutton and fragrant basmati rice slow-cooked together with rich aromatic spices.",
+    price: "₹480",
+    image:
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=85",
+  },
+  {
+    name: "Jeera Rice",
+    description:
+      "Steamed basmati rice tempered with cumin and fragrant whole spices.",
+    price: "₹240",
+    image:
+      "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Plain Naan",
+    description:
+      "Soft, freshly baked naan prepared in the traditional tandoor.",
+    price: "₹90",
+    image:
+      "https://images.unsplash.com/photo-1655979284091-eea0e93405ee?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Butter Naan",
+    description:
+      "Freshly baked naan brushed with melted butter for a rich, delicate finish.",
+    price: "₹110",
+    image:
+      "https://images.unsplash.com/photo-1655979284091-eea0e93405ee?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+    popular: true,
+  },
+  {
+    name: "Garlic Naan",
+    description:
+      "Soft tandoor-baked naan topped with fresh garlic and herbs.",
+    price: "₹130",
+    image:
+      "https://images.unsplash.com/photo-1655979284091-eea0e93405ee?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+  {
+    name: "Lachha Paratha",
+    description:
+      "Flaky, layered Indian flatbread baked until crisp and golden.",
+    price: "₹120",
+    image:
+      "https://images.unsplash.com/photo-1655979284091-eea0e93405ee?auto=format&fit=crop&w=1200&q=85",
+    vegetarian: true,
+  },
+];
+---
+
+
+
+<Layout title="Menu | Foresto Paradise">
+    <Navbar />
+    <Hero />
+    <MenuCategoryNav />
+    <ChefSignature />
+   <MenuSection
+        id="starters"
+        eyebrow="Begin Your Meal"
+        title="Starters"
+        description="Small plates made to awaken the appetite, from smoky tandoor favourites to crisp and flavourful bites."
+        items={starters}
+    />
+    <MenuSection
+        id="soups-salads"
+        eyebrow="Fresh & Light"
+        title="Soups & Salads"
+        description="Fresh, comforting and thoughtfully prepared. A lighter beginning or a refreshing choice on its own."
+        items={soupsAndSalads}
+    />
+    <MenuSection
+        id="tandoor"
+        eyebrow="From The Fire"
+        title="Tandoor"
+        description="Smoky, charred and full of character. Our tandoor brings out the depth of flavour in every bite."
+        items={tandoorItems}
+    />
+    <MenuVisualBreak />
+    <MenuSection
+        id="main-course"
+        eyebrow="From The Kitchen"
+        title="Main Course"
+        description="Hearty classics and house favourites prepared with layers of flavour, perfect for settling in and enjoying a proper meal."
+        items={mainCourseItems}
+    />
+    <MenuSection
+        id="rice-breads"
+        eyebrow="From The Tandoor"
+        title="Rice & Breads"
+        description="Fragrant rice, slow-cooked biryanis and freshly baked breads made to complement every dish on the table."
+        items={riceAndBreads}
+    />
+    <DownloadMenu />
+    <ReservationCTA />
+    <Footer />
+
+    <ReservationModal />
+
+
+  <!-- Menu content will go here -->
+</Layout>
