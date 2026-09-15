@@ -100,7 +100,13 @@ const {
             data-delay={`${300 + index * 100}`}
           >
             <MenuItem
-              {...item}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              image={item.image}
+              vegetarian={item.vegetarian}
+              spicy={item.spicy}
+              popular={item.popular}
               index={index}
             />
           </div>

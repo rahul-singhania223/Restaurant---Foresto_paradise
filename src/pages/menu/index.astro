@@ -1,15 +1,17 @@
 ---
-import Navbar from "../(Home)/components/hero/Navbar.astro";
 import Layout from "../../layouts/Layout.astro";
-import Hero from "./components/Hero.astro";
-import MenuCategoryNav from "./components/MenuCategoryNav.astro";
-import ChefSignature from "./components/ChefSignatures.astro";
-import MenuSection from "./components/MenuSection.astro";
-import MenuVisualBreak from "./components/MenuVisualBreak.astro";
-import DownloadMenu from "./components/DownloadMenu.astro";
-import ReservationCTA from "./components/ReservationCTA.astro";
-import Footer from "../(Home)/components/Footer.astro";
+import Hero from "../../components/Hero.astro";
+
+import Footer from "../../components/Footer.astro";
+
 import ReservationModal from "../../components/ReservationModal.astro";
+import MenuCategoryNav from "../../components/MenuCategoryNav.astro";
+import ChefSignatures from "../../components/ChefSignatures.astro";
+import MenuSection from "../../components/MenuSection.astro";
+import MenuVisualBreak from "../../components/MenuVisualBreak.astro";
+import DownloadMenu from "../../components/DownloadMenu.astro";
+import ReservationCTA from "../../components/ReservationCTA.astro";
+import Navbar from "../../components/hero/Navbar.astro";
 
 const starters = [
   {
@@ -359,7 +361,7 @@ const riceAndBreads = [
     <Navbar />
     <Hero />
     <MenuCategoryNav />
-    <ChefSignature />
+    <ChefSignatures />
    <MenuSection
         id="starters"
         eyebrow="Begin Your Meal"

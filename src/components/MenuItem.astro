@@ -23,10 +23,11 @@ const {
   index = 0,
 } = Astro.props;
 
-const modalId = `menu-modal-${name
+const modalId = name ? `menu-modal-${name
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, "-")
-  .replace(/(^-|-$)/g, "")}`;
+  .replace(/(^-|-$)/g, "")}` : "";
+
 ---
 
 <article
