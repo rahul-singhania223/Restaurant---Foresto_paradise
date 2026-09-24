@@ -22,3 +22,30 @@ import '../styles/global.css';
         <slot />
     </body>
 </html>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    // 1. Capture the 'ref' value from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+
+    console.log('ref:', ref);
+
+    // 2. Execute only if 'ref' exists
+    if (ref) {
+      // REPLACE WITH YOUR WEB APP URL FROM STEP 2
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbxYUTzpeqvl0iDZfOvjmstg6Q_DLZsyPb7ciWhIH36S9blnARQQJaxlrg8zXnKvUatj/exec';
+
+      fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', // Prevents CORS errors on Web Apps
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({ ref: ref })
+      })
+      .then(() => console.log('Successfully recorded referral for:', ref))
+      .catch(err => console.error('Tracking error:', err));
+    }
+  });
+</script>
